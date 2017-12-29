@@ -86,6 +86,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+	"image/color"
 )
 
 // severity identifies the sort of log: info, warning etc. It also implements

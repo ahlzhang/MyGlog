@@ -43,8 +43,9 @@ var logDir = flag.String("log_dir", "", "If non-empty, write log files in this d
 func createLogDirs() {
 	if *logDir != "" {
 		logDirs = append(logDirs, *logDir)
+	}else {
+		logDirs = append(logDirs, os.TempDir())
 	}
-	logDirs = append(logDirs, os.TempDir())
 }
 
 var (
@@ -147,7 +148,6 @@ func openFile(tag string) (*os.File, error) {
 
 	lastErr := errors.New("文件不存在")
 	var f *os.File
-
 	for _, dir := range logDirs {
 		fname := filepath.Join(dir, name)
 		if _, lastErr = os.Stat(fname); !os.IsNotExist(lastErr) {

@@ -14,7 +14,7 @@ import (
 )
 
 func TestMain(m *testing.M) {
-	flag.Set("log_dir", "/Users/zhangbob/go/src/myGlog/log/")
+	flag.Set("log_dir", "/Users/zhangbob/go/src/github.com/ahlzhang/MyGlog/log/")
 	flag.Parse()
 
 	ret := m.Run()
@@ -29,11 +29,10 @@ func TestTTT(t *testing.T) {
 	//Flush()
 
 	Error("===>2")
-	Flush()
 
-	//Info("===>3")
+	Info("===>3")
 	//Flush()
 	//
-	//Info("===>4")
+	Info("===>4")
 	//Flush()
 }
