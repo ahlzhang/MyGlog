@@ -1098,6 +1098,7 @@ func (v Verbose) Infof(format string, args ...interface{}) {
 // Arguments are handled in the manner of fmt.Print; a newline is appended if missing.
 func Info(args ...interface{}) {
 	logging.print(infoLog, args...)
+	Flush()
 }
 
 // InfoDepth acts as Info but uses depth to determine which call frame to log.
@@ -1116,12 +1117,14 @@ func Infoln(args ...interface{}) {
 // Arguments are handled in the manner of fmt.Printf; a newline is appended if missing.
 func Infof(format string, args ...interface{}) {
 	logging.printf(infoLog, format, args...)
+	Flush()
 }
 
 // Warning logs to the WARNING and INFO logs.
 // Arguments are handled in the manner of fmt.Print; a newline is appended if missing.
 func Warning(args ...interface{}) {
 	logging.print(warningLog, args...)
+	Flush()
 }
 
 // WarningDepth acts as Warning but uses depth to determine which call frame to log.
@@ -1140,12 +1143,14 @@ func Warningln(args ...interface{}) {
 // Arguments are handled in the manner of fmt.Printf; a newline is appended if missing.
 func Warningf(format string, args ...interface{}) {
 	logging.printf(warningLog, format, args...)
+	Flush()
 }
 
 // Error logs to the ERROR, WARNING, and INFO logs.
 // Arguments are handled in the manner of fmt.Print; a newline is appended if missing.
 func Error(args ...interface{}) {
 	logging.print(errorLog, args...)
+	Flush()
 }
 
 // ErrorDepth acts as Error but uses depth to determine which call frame to log.
@@ -1164,6 +1169,7 @@ func Errorln(args ...interface{}) {
 // Arguments are handled in the manner of fmt.Printf; a newline is appended if missing.
 func Errorf(format string, args ...interface{}) {
 	logging.printf(errorLog, format, args...)
+	Flush()
 }
 
 // Fatal logs to the FATAL, ERROR, WARNING, and INFO logs,
@@ -1171,6 +1177,7 @@ func Errorf(format string, args ...interface{}) {
 // Arguments are handled in the manner of fmt.Print; a newline is appended if missing.
 func Fatal(args ...interface{}) {
 	logging.print(fatalLog, args...)
+	Flush()
 }
 
 // FatalDepth acts as Fatal but uses depth to determine which call frame to log.
@@ -1191,6 +1198,7 @@ func Fatalln(args ...interface{}) {
 // Arguments are handled in the manner of fmt.Printf; a newline is appended if missing.
 func Fatalf(format string, args ...interface{}) {
 	logging.printf(fatalLog, format, args...)
+	Flush()
 }
 
 // fatalNoStacks is non-zero if we are to exit without dumping goroutine stacks.
