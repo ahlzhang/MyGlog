@@ -834,7 +834,7 @@ func (sb *syncBuffer) Sync() error {
 }
 
 func (sb *syncBuffer) Write(p []byte) (n int, err error) {
-	if sb.nbytes+uint64(len(p)) >= MaxSize {
+	if fileInfo.Size() >= MaxSize || sb.nbytes+uint64(len(p)) >= MaxSize {
 		if err := sb.createFile(time.Now()); err != nil {
 			sb.logger.exit(err)
 		}
