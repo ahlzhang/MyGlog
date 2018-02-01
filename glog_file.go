@@ -38,12 +38,21 @@ var logDirs []string
 
 // If non-empty, overrides the choice of directory in which to write logs.
 // See createLogDirs for the full list of possible destinations.
-var logDir = flag.String("log_dir", "", "If non-empty, write log files in this directory")
+var logDir = flag.String("log_dir", test(), "If non-empty, write log files in this directory")
+
+func test() string {
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		fmt.Println(err)
+	}
+	dirctory := strings.Replace(dir, "\\", "/", 0)
+	return dirctory + "/conf/log/"
+}
 
 func createLogDirs() {
 	if *logDir != "" {
 		logDirs = append(logDirs, *logDir)
-	}else {
+	} else {
 		logDirs = append(logDirs, os.TempDir())
 	}
 }
@@ -124,6 +133,11 @@ func create(tag string, t time.Time) (f *os.File, filename string, err error) {
 		if _, lastErr = os.Stat(fname); !os.IsNotExist(lastErr) {
 			newName, _ := logName(tag, t)
 			os.Rename(fname, filepath.Join(dir, newName))
+		}
+
+		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
+			lastErr = err
+			break
 		}
 
 		f, err := os.Create(fname)
