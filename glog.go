@@ -866,7 +866,6 @@ func (sb *syncBuffer) rotateFile(now time.Time) error {
 		sb.file.Seek(int64(n), io.SeekEnd)
 		return err
 	}
-
 	err = sb.createFile(now)
 	return err
 }

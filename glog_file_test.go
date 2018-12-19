@@ -15,7 +15,7 @@ import (
 func TestMain(m *testing.M) {
 	//flag.Set("log_dir", "/Users/zhangbob/go/src/github.com/ahlzhang/MyGlog/log/")
 	//flag.Parse()
-	//
+
 	ret := m.Run()
 	os.Exit(ret)
 }
